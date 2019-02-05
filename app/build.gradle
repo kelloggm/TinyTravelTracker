@@ -1,5 +1,25 @@
 apply plugin: 'com.android.application'
 
+
+buildscript {
+    repositories {
+        maven {
+            url uri('../../.m2/repository/')
+        }
+    }
+    dependencies {
+        classpath group: 'com.jaredsburrows',
+                  name: 'gradle-checker-framework-plugin',
+                  version: '0.2.3-SNAPSHOT'
+    }
+}
+
+apply plugin: 'com.jaredsburrows.checkerframework'
+
+checkerFramework {
+    checkers = ['com.amazon.checkerframework.compliance.kms.ComplianceChecker']
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -46,4 +66,12 @@ dependencies {
     implementation 'com.mapzen.tangram:tangram:0.9.0'
     implementation 'com.github.tajchert:nammu:1.2.0'
     //this is for asking the user for permissions
+
+    checkerFramework files("../../aws-kms-compliance-checker/build/libs/aws-kms-compliance-checker.jar")
+    checkerFramework 'org.checkerframework:checker:2.+'
+    checkerFramework 'org.checkerframework:checker-qual:2.+'
 }
+
+
+// because android gradle is bad
+allprojects { gradle.projectsEvaluated { tasks.withType(JavaCompile) { options.compilerArgs << "-nowarn" << "-Xmaxerrs" << "10000" } } }
