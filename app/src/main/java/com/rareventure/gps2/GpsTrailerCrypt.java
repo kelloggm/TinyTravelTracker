@@ -361,6 +361,7 @@ public class GpsTrailerCrypt {
 	 * @param db 
 	 * @return GpsTrailerCrypt instance created
 	 */
+        @SuppressWarnings({"crypto", "compliance", "value"}) // TRUE POSITIVE: INTERNAL_ASYMMETRIC_ENCRYPTION_ALGORITHM is RSA/ECB/PKCS1PADDING, which is too weak
 	public static GpsTrailerCrypt generateAndInitializeNewUserDataEncryptingKey(int appId, SQLiteDatabase db) {
 
 		try {
@@ -405,6 +406,7 @@ public class GpsTrailerCrypt {
 	/**
 	 * Used to pull a particular crypt setup to decrypt a row
 	 */
+        @SuppressWarnings({"crypto", "compliance", "value"}) // TRUE POSITIVE: INTERNAL_ASYMMETRIC_ENCRYPTION_ALGORITHM is RSA/ECB/PKCS1PADDING, which is too weak
 	public static GpsTrailerCrypt instance(int userDataKeyId) {
 		GpsTrailerCrypt crypt = userDataKeyIdToGpsCrypt.get(userDataKeyId);
 
@@ -613,6 +615,7 @@ public class GpsTrailerCrypt {
 	 * is a slow method and not meant for high performance. See
 	 * crypt.encryptData() for an alternative
 	 */
+        @SuppressWarnings({"crypto", "compliance", "value"}) // TRUE POSITIVE: TTT_ENCRYPTION_ALGORITHM is RSA/ECB/PKCS1PADDING, which is too weak
 	public byte[] encryptDataWithPrivateKey(byte[] buffer, int length) {
 		try {
 			Cipher cipher = Cipher.getInstance(TTT_ENCRYPTION_ALGORITHM);
@@ -626,6 +629,7 @@ public class GpsTrailerCrypt {
 		}
 	}
 
+        @SuppressWarnings({"crypto", "compliance", "value"}) // TRUE POSITIVE: TTT_ENCRYPTION_ALGORITHM is RSA/ECB/PKCS1PADDING, which is too weak
 	public byte [] decryptDataWithPrivateKey(byte[] data) {
 		try {
 			Cipher cipher = Cipher.getInstance(TTT_ENCRYPTION_ALGORITHM);

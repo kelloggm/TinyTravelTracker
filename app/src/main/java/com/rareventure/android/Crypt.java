@@ -180,6 +180,7 @@ public class Crypt {
 			
 	}
 
+        @SuppressWarnings({"compliance","crypto","value"}) // TRUE POSITIVE: the algorithm in use here is RSA/ECB/PKCS1Padding, which is too weak
 	public static String getAsymmetricEncryptionDesc()
 	{
 		try {

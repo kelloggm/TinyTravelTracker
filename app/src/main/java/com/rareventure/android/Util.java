@@ -289,6 +289,8 @@ public class Util {
         + ((b[s++] & 0xFF));
 	}
 
+        @SuppressWarnings({"compliance", "crypto", "value"}) // TRUE POSITIVE: AES is too weak for Cipher.getInstance()
+        // TRUE POSITIVE: AES is too weak for Cipher.getInstance()
 	public static void main(String []argv) throws Exception
 	{
 		byte [] salt = new  byte[5];

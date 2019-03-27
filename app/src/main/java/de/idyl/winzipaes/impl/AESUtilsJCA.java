@@ -47,6 +47,8 @@ public class AESUtilsJCA {
 	private final byte[] keystream = new byte[BLOCK_SIZE];
 	private int next = BLOCK_SIZE;
 
+        @SuppressWarnings({"crypto", "compliance", "value"}) // TRUE POSITIVE: AES is too weak for Cipher.getInstance
+        // TRUE POSITIVE: HmacSHA1 is too weak for Mac.getInstance
 	public AESUtilsJCA(String password, int keySize, byte[] salt) {
 		if (keySize != 128 && keySize != 192 && keySize != 256)
 			throw new IllegalArgumentException("Illegal keysize: " + keySize);
