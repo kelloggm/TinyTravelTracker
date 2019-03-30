@@ -1,5 +1,3 @@
-apply plugin: 'com.android.application'
-
 
 buildscript {
     repositories {
@@ -13,6 +11,9 @@ buildscript {
                   version: '0.2.3-SNAPSHOT'
     }
 }
+
+
+apply plugin: 'com.android.application'
 
 apply plugin: 'com.jaredsburrows.checkerframework'
 
