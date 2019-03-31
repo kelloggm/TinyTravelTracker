@@ -1,9 +1,7 @@
 
 buildscript {
     repositories {
-        maven {
-              mavenLocal()
-        }
+        mavenLocal()
     }
     dependencies {
         classpath group: 'com.jaredsburrows',

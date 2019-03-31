@@ -16,4 +16,4 @@ export ANDROID_HOME=`pwd`/android-sdk/
 
 yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses
 
-./gradlew $1
+./gradlew compileDebugSources
